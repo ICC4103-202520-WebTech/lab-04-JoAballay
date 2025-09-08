@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_08_040453) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_08_044710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "guest_tables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.string "document_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,7 +34,41 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_040453) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.integer "reservation_id"
+    t.integer "nights_subtotal"
+    t.integer "services_subtotal"
+    t.integer "tax"
+    t.integer "total"
+    t.datetime "issued_at"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reservation_tables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.string "code"
+    t.integer "guest_id"
+    t.integer "room_id"
+    t.date "check_in"
+    t.date "check_out"
+    t.integer "status"
+    t.integer "adults"
+    t.integer "children"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "number"
+    t.integer "room_type"
+    t.integer "price"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +88,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_040453) do
   end
 
   create_table "service_usage_tables", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "service_usages", force: :cascade do |t|
+    t.integer "reservation_id"
+    t.integer "service_id"
+    t.integer "quantity"
+    t.datetime "used_at"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
