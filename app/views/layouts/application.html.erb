@@ -1,56 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Hotel Management" %></title>
+    <title>Hotel Management</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
     <style>
       body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; }
-      nav { background: #0d6efd; padding: 12px 16px; display: flex; gap: 12px; }
-      nav a { color: #fff; text-decoration: none; font-weight: 600; }
+      header { background: #000; color: #fff; padding: 16px; }
+      header h1 { margin: 0; font-size: 24px; }
+      nav { background: #f6f8fa; padding: 16px; }
+      nav ul { list-style: none; margin: 0; padding: 0; }
+      nav li { margin: 10px 0; }
+      nav a { color: #000; text-decoration: none; font-weight: 700; }
+      nav a:hover { text-decoration: underline; }
       .container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
-      .flash { margin: 16px 0; padding: 10px 12px; border-radius: 8px; }
-      .flash.notice { background: #e7f3ff; }
-      .flash.alert { background: #ffe9e9; }
-      table { width: 100%; border-collapse: collapse; }
-      th, td { padding: 8px 10px; border-bottom: 1px solid #ddd; text-align: left; }
-      .muted { color: #666; }
     </style>
   </head>
-
   <body>
-    <nav>
-      <%= link_to "Rooms", rooms_path %>
-      <%= link_to "Guests", guests_path %>
-      <%= link_to "Reservations", reservations_path %>
-      <%= link_to "Services", services_path %>
+    <header>
+      <h1>Hotel Management</h1>
+    </header>
+
+    <nav aria-label="Main">
+      <ul>
+        <li><%= link_to "Rooms", rooms_path %></li>
+        <li><%= link_to "Guests", guests_path %></li>
+        <li><%= link_to "Reservations", reservations_path %></li>
+        <li><%= link_to "Services", services_path %></li>
+      </ul>
     </nav>
 
     <div class="container">
-      <% if notice %>
-        <div class="flash notice"><%= notice %></div>
-      <% end %>
-      <% if alert %>
-        <div class="flash alert"><%= alert %></div>
-      <% end %>
-
       <%= yield %>
     </div>
   </body>
