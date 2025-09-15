@@ -1,0 +1,25 @@
+<h1>Rooms</h1>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Type</th>
+      <th>Price (per night)</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.number %></td>
+        <td><%= room.room_type %></td>
+        <td><%= number_to_currency(room.price, unit: "$", precision: 0) %></td>
+        <td><%= room.status %></td>
+        <td><%= link_to "View", room_path(room) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p class="muted">Mostrando <%= @rooms.size %> habitaciones.</p>
+

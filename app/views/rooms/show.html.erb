@@ -1,0 +1,7 @@
+<h1>Room <%= @room.number %></h1>
+<ul>
+  <li><strong>Type:</strong> <%= @room.room_type %></li>
+  <li><strong>Price (per night):</strong> <%= number_to_currency(@room.price, unit: "$", precision: 0) %></li>
+  <li><strong>Status:</strong> <%= @room.status %></li>
+</ul>
+<p><%= link_to "Back to Rooms", rooms_path %></p>

@@ -20,9 +20,38 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; }
+      nav { background: #0d6efd; padding: 12px 16px; display: flex; gap: 12px; }
+      nav a { color: #fff; text-decoration: none; font-weight: 600; }
+      .container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+      .flash { margin: 16px 0; padding: 10px 12px; border-radius: 8px; }
+      .flash.notice { background: #e7f3ff; }
+      .flash.alert { background: #ffe9e9; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 8px 10px; border-bottom: 1px solid #ddd; text-align: left; }
+      .muted { color: #666; }
+    </style>
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <%= link_to "Rooms", rooms_path %>
+      <%= link_to "Guests", guests_path %>
+      <%= link_to "Reservations", reservations_path %>
+      <%= link_to "Services", services_path %>
+    </nav>
+
+    <div class="container">
+      <% if notice %>
+        <div class="flash notice"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="flash alert"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

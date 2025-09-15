@@ -1,0 +1,28 @@
+<h1>Reservations</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Check-in</th>
+      <th>Check-out</th>
+      <th>Status</th>
+      <th>Guest ID</th>
+      <th>Room ID</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |r| %>
+      <tr>
+        <td><%= r.code %></td>
+        <td><%= r.check_in %></td>
+        <td><%= r.check_out %></td>
+        <td><%= r.status %></td>
+        <td><%= r.guest_id %></td>
+        <td><%= r.room_id %></td>
+        <td><%= link_to "View", reservation_path(r) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p class="muted">Mostrando <%= @reservations.size %> reservas.</p>

@@ -1,0 +1,6 @@
+<h1><%= @service.name %></h1>
+<ul>
+  <li><strong>Price:</strong> <%= number_to_currency(@service.price, unit: "$", precision: 0) %></li>
+  <li><strong>Active:</strong> <%= @service.is_active ? "Yes" : "No" %></li>
+</ul>
+<p><%= link_to "Back to Services", services_path %></p>
